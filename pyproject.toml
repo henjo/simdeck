@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "simdeck"
+dynamic = ["version"]
+description = "Run external circuit simulators (Spectre from Virtuoso designs or netlists, gnucap) and get results as Polars tables"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+dependencies = []
+keywords = ["spectre", "virtuoso", "skill", "gnucap", "simulation", "eda"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+]
+
+[project.optional-dependencies]
+# headless Virtuoso session (POSIX)
+virtuoso = ["pexpect"]
+test = ["pytest", "pexpect"]
+
+[project.urls]
+Repository = "https://github.com/henjo/simdeck"
+Issues = "https://github.com/henjo/simdeck/issues"
+
+[tool.hatch.version]
+path = "simdeck/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["simdeck"]
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+testpaths = ["simdeck", "tests"]
+
+[tool.ruff]
+line-length = 120
