@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
-dependencies = []
+dependencies = ["polars>=1.40", "polars-waveform>=0.1"]
 keywords = ["spectre", "virtuoso", "skill", "gnucap", "simulation", "eda"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -22,7 +22,7 @@ classifiers = [
 [project.optional-dependencies]
 # headless Virtuoso session (POSIX)
 virtuoso = ["pexpect"]
-test = ["pytest", "pexpect"]
+test = ["pytest", "pexpect", "numpy"]
 
 [project.urls]
 Repository = "https://github.com/henjo/simdeck"
@@ -40,3 +40,7 @@ testpaths = ["simdeck", "tests"]
 
 [tool.ruff]
 line-length = 120
+
+[tool.uv.sources]
+# until polars-waveform is on PyPI
+polars-waveform = { git = "https://github.com/henjo/polars-waveform" }

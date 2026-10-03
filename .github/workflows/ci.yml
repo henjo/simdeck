@@ -22,7 +22,11 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: install
-        run: python -m pip install ".[test]"
+        run: |
+          sudo apt-get update && sudo apt-get install -y gnucap
+          # until polars-waveform is on PyPI
+          python -m pip install "polars-waveform @ git+https://github.com/henjo/polars-waveform"
+          python -m pip install ".[test]"
       - name: pytest
         run: python -m pytest -q
 
